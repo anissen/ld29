@@ -17,10 +17,9 @@ import flambe.display.EmitterSprite;
 
 class TileData extends Component
 {
-    public function new (tileX :Int, tileY :Int)
+    public function new ()
     {
-        this.tileX = tileX;
-        this.tileY = tileY;
+
     }
 
     override public function onAdded ()
@@ -43,4 +42,8 @@ class TileData extends Component
 
     public var tileX :Int;
     public var tileY :Int;
+    public var topOpen :Bool;
+    public var bottomOpen :Bool;
+    public var leftOpen :Bool;
+    public var rightOpen :Bool;
 }

@@ -39,7 +39,6 @@ class Map extends Component
         var mouseDown = false;
         var startTileX :Float = 0; 
         var startTileY :Float = 0;
-        // var colors = ["#7FDBFF", "#0074D9", "#001F3F", "#39CCCC", "#2ECC40", "#3D9970", "#01FF70", "#FFDC00", "#FF851B", "#FF4136", "#F012BE", "#B10DC9", "#85144B", "#dddddd", "#aaaaaa"];
         var emptyTexture = _ctx.pack.getTexture("tiles/empty");
         var textures = [_ctx.pack.getTexture("tiles/straight"), _ctx.pack.getTexture("tiles/bend"), _ctx.pack.getTexture("tiles/block")];
         var selection = new ImageSprite(_ctx.pack.getTexture("tiles/selection"));
@@ -50,8 +49,21 @@ class Map extends Component
             for (x in 0...7) {
                 var empty = Math.random() < 0.3;
                 
-                var texture = empty ? emptyTexture : textures[Math.floor(textures.length * Math.random())];
-                var tileSprite = new ImageSprite(texture);
+                var entity = tiles[y][x];
+                var rotation = Math.floor(Math.random() * 4);
+                var random = Math.random();
+                if (random < 0.3) {
+                    entity.add(new StraightTile(_ctx, x, y, rotation));
+                } else if (random < 0.6) {
+                    entity.add(new BendTile(_ctx, x, y, rotation));
+                } else if (random < 0.8) {
+                    entity.add(new BlockTile(_ctx, x, y, rotation));
+                } else {
+                    entity.add(new EmptyTile(_ctx, x, y, rotation));
+                }
+
+                // var texture = empty ? emptyTexture : textures[Math.floor(textures.length * Math.random())];
+                var tileSprite = entity.get(Sprite); // new ImageSprite(texture);
                 tileSprite.centerAnchor();
                 tileSprite.setXY(WIDTH / 2, HEIGHT / 2);
                 tileSprite.x.animateTo(x * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
@@ -59,16 +71,13 @@ class Map extends Component
                 tileSprite.scaleX.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
                 tileSprite.scaleY.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
                 var rotations = [0.0, 90.0, 180.0, 270.0];
-                tileSprite.rotation.animateTo(rotations[Math.floor(Math.random() * rotations.length)], 1 + Math.random(), Ease.elasticOut);
-                // tileSprite.alpha._ = 0.9;
-                //tileSprite.setBlendMode(flambe.display.BlendMode.Add);
+                tileSprite.rotation.animateTo(rotations[rotation], 1 + Math.random(), Ease.elasticOut);
 
                 var entity = tiles[y][x];
                 entity.add(tileSprite);
-                // entity.add(new FillSprite(Math.floor(Math.random() * 0xFFFFFF), 128, 128));
-                // entity.add(new WalkableTile());
-                entity.add(new TileData(x, y));
                 owner.addChild(entity);
+
+                var tileData = entity.get(TileData);
 
                 tileSprite.pointerDown.connect(function(event :PointerEvent) {
                     mouseDown = true;
@@ -86,11 +95,11 @@ class Map extends Component
                     selection.alpha.animateTo(0.0, 0.5, Ease.elasticOut);
 
                     mouseDown = false;
-                    var tileX = Math.floor(event.viewX / TILE_SIZE);
-                    var tileY = Math.floor(event.viewY / TILE_SIZE);
+                    var tileX = tileData.tileX; // Math.floor(event.viewX / TILE_SIZE);
+                    var tileY = tileData.tileY; // Math.floor(event.viewY / TILE_SIZE);
                     if (Math.abs(tileX - startTileX) == 0 && Math.abs(tileY - startTileY) == 0) {
                         // TODO: particle effect?
-                        if (empty) return;
+                        // if (empty) return;
                         var player = playerEntity.get(Player);
                         if (player._tile == null) return;
                         var playerTileData = player._tile.get(TileData);
@@ -98,6 +107,10 @@ class Map extends Component
                         var playerTileY = playerTileData.tileY;
                         var playerSprite = playerEntity.get(Sprite);
                         if (Math.abs(playerTileX - tileX) + Math.abs(playerTileY - tileY) == 1) {
+                            if (tileX < playerTileX && (!playerTileData.leftOpen || !tileData.rightOpen)) return;
+                            if (tileX > playerTileX && (!playerTileData.rightOpen || !tileData.leftOpen)) return;
+                            if (tileY < playerTileY && (!playerTileData.topOpen || !tileData.bottomOpen)) return;
+                            if (tileY > playerTileY && (!playerTileData.bottomOpen || !tileData.topOpen)) return;
                             player.moveToTile(tileSprite.owner);
                         }
                         return;
@@ -120,12 +133,40 @@ class Map extends Component
         // playerEntity.get(Sprite).setXY(TILE_SIZE / 2, TILE_SIZE / 2);
         owner.addChild(playerEntity);
 
+        // calculateGraph();
+
         player.moveToTile(tiles[2][2]);
     }
 
     override public function onUpdate (dt :Float) {
         
     }
+
+    // function calculateGraph () {
+    //     graph = new Graph<Entity>();
+    //     var a;
+    //     for (y in 1...5) { // TODO: X and Y should be swapped for portrait mode
+    //         for (x in 0...7) {
+    //             a = graph.addNode(graph.createNode(tiles[y-1][x]));
+    //             var b = graph.addNode(graph.createNode(tiles[y][x]));
+    //             graph.addMutualArc(a, b);
+    //         }
+    //     }
+    //     for (y in 0...5) { // TODO: X and Y should be swapped for portrait mode
+    //         for (x in 1...7) {
+    //             var a = graph.addNode(graph.createNode(tiles[y][x-1]));
+    //             var b = graph.addNode(graph.createNode(tiles[y][x]));
+    //             graph.addMutualArc(a, b);
+    //         }
+    //     }
+    //     var f = function(node:GraphNode<Entity>, preflight :Bool, userData :Dynamic) :Bool {
+    //         trace("searching: " + node.val);
+    //         return true;
+    //     }
+    //     var preflight = false;
+    //     var seed = a; //use first node as initial node
+    //     graph.DFS(preflight, seed, f);
+    // }
 
     function getColumn(index :Int) {
         var column = new Array<Entity>();
@@ -210,6 +251,8 @@ class Map extends Component
     public var _engineSoundPlayback :Playback;
 
     public var playerEntity (default, null) :Entity;
+
+    // public var graph :Graph<Entity>;
 
     //private var _moveListener :flambe.System.Sig;
     public var onMoveStart :Signal1<Entity> = new Signal1<Entity>();

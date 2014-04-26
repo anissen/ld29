@@ -25,7 +25,7 @@ fullscreen: true
 
 # Additional flags to pass to the Haxe compiler.
 # haxe_flags: -lib nape -D foobar
-haxe_flags: -lib sfxr
+haxe_flags: -lib sfxr #-lib polygonal-ds
 
 # Additional paths to include in the build.
 # extra_paths:
