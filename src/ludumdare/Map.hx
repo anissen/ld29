@@ -35,19 +35,31 @@ class Map extends Component
                     new Entity() 
             ]
         ];
-        // trace("length of tiles: " + tiles.length);
 
         var mouseDown = false;
         var startTileX :Float = 0; 
-        var startTileY :Float = 0; 
+        var startTileY :Float = 0;
+        // var colors = ["#7FDBFF", "#0074D9", "#001F3F", "#39CCCC", "#2ECC40", "#3D9970", "#01FF70", "#FFDC00", "#FF851B", "#FF4136", "#F012BE", "#B10DC9", "#85144B", "#dddddd", "#aaaaaa"];
 
         for (y in 0...5) { // TODO: X and Y should be swapped for portrait mode
             for (x in 0...7) {
-                var tileSprite = new FillSprite(Math.floor(Math.random() * 0xFFFFFF), TILE_SIZE, TILE_SIZE);
+                var empty = Math.random() < 0.3;
+
+                var tileSprite = new FillSprite((empty ? 0x000000 : Math.floor(Math.random() * 0xFFFFFF)), TILE_SIZE, TILE_SIZE);
                 tileSprite.centerAnchor();
                 tileSprite.setXY(WIDTH / 2, HEIGHT / 2);
                 tileSprite.x.animateTo(x * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
                 tileSprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
+                tileSprite.scaleX.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
+                tileSprite.scaleY.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
+
+                var entity = tiles[y][x];
+                entity.add(tileSprite);
+                // entity.add(new WalkableTile());
+                owner.addChild(entity);
+
+                // TODO: Tile should have tileX, tileY properties
+                // that should be updated on moveRow/moveColumn
 
                 tileSprite.pointerDown.connect(function(event :PointerEvent) {
                     mouseDown = true;
@@ -59,6 +71,18 @@ class Map extends Component
                     mouseDown = false;
                     var tileX = Math.floor(event.viewX / TILE_SIZE);
                     var tileY = Math.floor(event.viewY / TILE_SIZE);
+                    if (Math.abs(tileX - startTileX) == 0 && Math.abs(tileY - startTileY) == 0) {
+                        // TODO: particle effect?
+                        if (empty) return;
+                        var player = playerEntity.get(Player);
+                        var playerTileX = player._tileX;
+                        var playerTileY = player._tileY;
+                        var playerSprite = playerEntity.get(Sprite);
+                        if (Math.abs(playerTileX - tileX) + Math.abs(playerTileY - tileY) == 1) {
+                            player.moveToTile(tileSprite.owner, tileX, tileY);
+                        }
+                        return;
+                    }
                     if (Math.abs(tileX - startTileX) != 0 && Math.abs(tileY - startTileY) != 0) return;
                     if (Math.abs(tileX - startTileX) != 0) {
                         moveRow(tileY, tileX - startTileX);
@@ -67,10 +91,26 @@ class Map extends Component
                     }
                 });
 
-                var entity = tiles[y][x];
-                owner.addChild(entity.add(tileSprite));
+                if (empty) continue;
+
+                tileSprite.pointerIn.connect(function(event :PointerEvent) {
+                    tileSprite.scaleX.animateTo(0.9, 0.5, Ease.elasticOut);
+                    tileSprite.scaleY.animateTo(0.9, 0.5, Ease.elasticOut);
+                });
+                tileSprite.pointerOut.connect(function(event :PointerEvent) {
+                    tileSprite.scaleX.animateTo(1.0, 0.5, Ease.elasticOut);
+                    tileSprite.scaleY.animateTo(1.0, 0.5, Ease.elasticOut);
+                });
             }
         }
+
+        // Create the player's plane
+        var player = new Player(_ctx, "player/player");
+        playerEntity = new Entity().add(player);
+        playerEntity.get(Sprite).setXY(TILE_SIZE / 2, TILE_SIZE / 2);
+        owner.addChild(playerEntity);
+
+        player.moveToTile(tiles[2][2], 2, 2);
     }
 
     override public function onUpdate (dt :Float) {
@@ -135,26 +175,11 @@ class Map extends Component
         sfxr.play();
     }
 
-    public function move (x :Float, y :Float) {
-        _moveToX = x;
-        _moveToY = y;
-    }
-
     private var _ctx :GameContext;
     private var _name :String;
     private var _file :String;
-    private var _sprite :ImageSprite;
-    private var _moving :Bool = false;
-    private var _landing :Bool = false;
-    private var _landed :Bool = false;
-    private var _landingOn :Entity;
-    private var _initialPlanetRotation :Float;
     private var _moveSpeed :Float = 200;
     // private var _rotationSpeed :Float = 10;
-    private var _script :Script;
-    private var _moveToX :Float;
-    private var _moveToY :Float;
-    private var _emitter :EmitterSprite;
 
     private var TILE_SIZE :Int;
     private var HEIGHT :Int;
@@ -163,6 +188,8 @@ class Map extends Component
     private var tiles :Array<Array<Entity>>;
 
     public var _engineSoundPlayback :Playback;
+
+    public var playerEntity (default, null) :Entity;
 
     //private var _moveListener :flambe.System.Sig;
     public var onMoveStart :Signal1<Entity> = new Signal1<Entity>();

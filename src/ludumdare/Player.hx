@@ -3,11 +3,14 @@ package ludumdare;
 
 import flambe.animation.Ease;
 import flambe.Component;
+import flambe.display.FillSprite;
 import flambe.display.ImageSprite;
 import flambe.display.Sprite;
 import flambe.Entity;
 import flambe.math.FMath;
 import flambe.script.*;
+import flambe.script.CallFunction;
+import flambe.script.MoveTo;
 import flambe.sound.Sound;
 import flambe.sound.Playback;
 import flambe.util.Signal1;
@@ -34,11 +37,15 @@ class Player extends Component
         _sprite.scaleY.animateTo(0.25, 1, flambe.animation.Ease.bounceOut);
         // _sprite.setScale(0.1);
         _sprite.disablePixelSnapping();
+        _sprite.disablePointer();
         _sprite.centerAnchor();
     }
 
     override public function onUpdate (dt :Float) {
-        
+        if (_tile != null) {
+            var tileSprite = _tile.get(FillSprite);
+            _sprite.setXY(tileSprite.x._, tileSprite.y._);
+        }
     }
 
     function playSound() {
@@ -59,16 +66,45 @@ class Player extends Component
     }
 
     public function move (x :Float, y :Float) {
-        _moveToX = x;
-        _moveToY = y;
+        // _moveToX = x;
+        // _moveToY = y;
+        _sprite.x.animateTo(x, Math.abs(x - _sprite.x._) / _moveSpeed, Ease.elasticInOut);
+        _sprite.y.animateTo(y, Math.abs(y - _sprite.y._) / _moveSpeed, Ease.elasticInOut);
+    }
+
+    public function moveToTile (tile :Entity, tileX :Int, tileY :Int) {
+        // if (_tile != null)
+        //     _tile.removeChild(owner);
+        // tile.addChild(owner);
+
+        _tileX = tileX;
+        _tileY = tileY;
+        // _sprite.x.animateTo(tile.get(Sprite).x._, Math.abs(tile.get(Sprite).x._ - _sprite.x._) / _moveSpeed, Ease.elasticInOut);
+        // _sprite.y.animateTo(tile.get(Sprite).y._, Math.abs(tile.get(Sprite).y._ - _sprite.y._) / _moveSpeed, Ease.elasticInOut);
+        // _sprite.rotation.animateBy(360, 1, Ease.elasticInOut);
+        // var tileSprite = tile.get(FillSprite);
+        var distance = (Math.sqrt(Math.pow(tile.get(FillSprite).x._ - _sprite.x._, 2) + Math.pow(tile.get(FillSprite).y._ - _sprite.y._, 2))) / _moveSpeed;
+        var moveScript = new Script();
+        owner.add(moveScript);
+        moveScript.run(new Sequence([
+            new MoveTo(tile.get(FillSprite).x._, tile.get(FillSprite).y._, distance, Ease.elasticOut, Ease.elasticOut),
+            new CallFunction(function () {
+                _tile = tile;
+            })
+        ]));
+        _tile = null;
+
     }
 
     private var _ctx :GameContext;
     private var _name :String;
     private var _sprite :ImageSprite;
-    private var _moveSpeed :Float = 200;
+    private var _moveSpeed :Float = 300;
     // private var _rotationSpeed :Float = 10;
     private var _script :Script;
     private var _moveToX :Float;
     private var _moveToY :Float;
+    private var _tile :Entity;
+    public var _tileX :Int;
+    public var _tileY :Int;
 }

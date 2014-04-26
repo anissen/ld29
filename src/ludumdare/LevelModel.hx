@@ -37,23 +37,20 @@ class LevelModel extends Component
         owner.addChild(_worldLayer);
 
         // Add a scrolling ocean background
-        var background = new FillSprite(0xFFFFAA, WIDTH, HEIGHT);
+        var background = new FillSprite(0x444444, WIDTH, HEIGHT);
         background.centerAnchor();
         background.setXY(WIDTH / 2, HEIGHT / 2);
         _worldLayer.addChild(new Entity().add(background));
         _worldLayer.addChild(_mapLayer = new Entity());
-        _worldLayer.addChild(_playerLayer = new Entity());
+        // _worldLayer.addChild(_playerLayer = new Entity());
 
         var map = new Map(_ctx, "dummy_file", TILE_SIZE, WIDTH, HEIGHT);
         _mapLayer.addChild(new Entity().add(map));
 
-        // Create the player's plane
-        var player = new Player(_ctx, "player/player");
-        playerEntity = new Entity().add(player);
-        playerEntity.get(Sprite).setXY(System.stage.width / 2, System.stage.height / 2);
-        player.move(System.stage.width / 2, System.stage.height / 2);
+        
+        // player.move(System.stage.width / 2, System.stage.height / 2);
 
-        _playerLayer.addChild(playerEntity);
+        // _playerLayer.addChild(playerEntity);
 
         // plane.onMoveStart.connect(function(_) {
         //     _moving = true;
@@ -119,5 +116,4 @@ class LevelModel extends Component
     private static var TILE_SIZE :Int = 128;
     private static var HEIGHT :Int = TILE_SIZE * 5; // 640;
     private static var WIDTH :Int = TILE_SIZE * 7; //approx. 960;
-    public var playerEntity (default, null) :Entity;
 }
