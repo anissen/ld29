@@ -37,6 +37,10 @@ class Map extends Component
         ];
         // trace("length of tiles: " + tiles.length);
 
+        var mouseDown = false;
+        var startTileX :Float = 0; 
+        var startTileY :Float = 0; 
+
         for (y in 0...5) { // TODO: X and Y should be swapped for portrait mode
             for (x in 0...7) {
                 var tileSprite = new FillSprite(Math.floor(Math.random() * 0xFFFFFF), TILE_SIZE, TILE_SIZE);
@@ -45,52 +49,24 @@ class Map extends Component
                 tileSprite.x.animateTo(x * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
                 tileSprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
 
-                var movingTile = false;
-                var startX :Float = 0; 
-                var startY :Float = 0; 
-                // tileSprite.pointerIn.connect(function(event :PointerEvent) {
-                //     tileSprite.scaleX.animateTo(1.1, 0.5, Ease.elasticOut);
-                //     tileSprite.scaleY.animateTo(1.1, 0.5, Ease.elasticOut);
-                // });
-                // tileSprite.pointerOut.connect(function(event :PointerEvent) {
-                //     tileSprite.scaleX.animateTo(1.0, 0.5, Ease.elasticOut);
-                //     tileSprite.scaleY.animateTo(1.0, 0.5, Ease.elasticOut);
-                // });
                 tileSprite.pointerDown.connect(function(event :PointerEvent) {
-                    movingTile = true;
-                    startX = (Math.floor(event.viewX / TILE_SIZE) + 0.5) * TILE_SIZE;
-                    startY = (Math.floor(event.viewY / TILE_SIZE) + 0.5) * TILE_SIZE;
-                    // trace(haxe.Timer.stamp());
-                    // moveRow(y, -1);
-                    // moveColumn(x, -1);
+                    mouseDown = true;
+                    startTileX = Math.floor(event.viewX / TILE_SIZE);
+                    startTileY = Math.floor(event.viewY / TILE_SIZE);
                 });
-                tileSprite.pointerUp.connect(function(_) {
-                    movingTile = false;
-                    var tileX = Math.floor(tileSprite.x._ / TILE_SIZE);
-                    var tileY = Math.floor(tileSprite.y._ / TILE_SIZE);
-                    var newX :Int = Math.floor((tileX + 0.5) * TILE_SIZE);
-                    var newY :Int = Math.floor((tileY + 0.5) * TILE_SIZE);
-                    trace("diff x", Math.abs(newX - startX));
-                    trace("diff y", Math.abs(newY - startY));
-                    if (Math.abs(newX - startX) > TILE_SIZE / 2) {
-                        moveRow(tileY, newX - startX);
-                    } else if (Math.abs(newY - startY) > TILE_SIZE / 2) {
-                        moveColumn(tileX, newY - startY);
-                    } else {
-                        tileSprite.x.animateTo(newX, 0.5, Ease.elasticOut);
-                        tileSprite.y.animateTo(newY, 0.5, Ease.elasticOut);
+                tileSprite.pointerUp.connect(function(event :PointerEvent) {
+                    if (!mouseDown) return;
+                    mouseDown = false;
+                    var tileX = Math.floor(event.viewX / TILE_SIZE);
+                    var tileY = Math.floor(event.viewY / TILE_SIZE);
+                    if (Math.abs(tileX - startTileX) != 0 && Math.abs(tileY - startTileY) != 0) return;
+                    if (Math.abs(tileX - startTileX) != 0) {
+                        moveRow(tileY, tileX - startTileX);
+                    } else if (Math.abs(tileY - startTileY) != 0) {
+                        moveColumn(tileX, tileY - startTileY);
                     }
                 });
-                tileSprite.pointerMove.connect(function(event :PointerEvent) {
-                    if (!movingTile) return;
-                    var diffX = event.viewX - startX;
-                    var diffY = event.viewY - startY;
-                    if (Math.abs(diffX) > Math.abs(diffY)) {
-                        tileSprite.setXY(FMath.clamp(event.viewX, startX - TILE_SIZE, startX + TILE_SIZE), startY);
-                    } else {
-                        tileSprite.setXY(startX, FMath.clamp(event.viewY, startY - TILE_SIZE, startY + TILE_SIZE));
-                    }
-                });
+
                 var entity = tiles[y][x];
                 owner.addChild(entity.add(tileSprite));
             }
@@ -101,17 +77,12 @@ class Map extends Component
         
     }
 
-    // function moveRow(index :Int, direction :Int) {
-    //     var arr = tile[index];
-    //     for (x in 0...tiles[index].length) {
-    //         tile[index] = arr[(index + arr.length + direction) % arr.length];
-    //         var sprite = tile.get(FillSprite);
-    //         sprite.x.animateTo(direction * TILE_SIZE, 2, Ease.elasticOut);
-    //     }
-    // }
-
-    function getRow(index :Int) {
-        
+    function getColumn(index :Int) {
+        var column = new Array<Entity>();
+        for (row in tiles) {
+            column.push(row[index]);
+        }
+        return column;
     }
 
     function moveRow(index :Int, direction :Float) {
@@ -124,7 +95,7 @@ class Map extends Component
         var count = 0;
         for (tile in row) {
             var sprite = tile.get(FillSprite);
-            sprite.x.animateTo(count * TILE_SIZE + TILE_SIZE / 2, 2, Ease.elasticOut);
+            sprite.x.animateTo(count * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
             count++;
         }
     }
@@ -142,7 +113,7 @@ class Map extends Component
         for (y in 0...column.length) {
             var tile = column[y];
             var sprite = tile.get(FillSprite);
-            sprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 2, Ease.elasticOut);
+            sprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
             tiles[y][index] = tile;
         }
     }
