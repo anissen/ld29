@@ -1,0 +1,1122 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Ass",
+				"AssetsMain"
+			],
+			[
+				"anima",
+				"animateTo"
+			],
+			[
+				"_land",
+				"_landing	var"
+			],
+			[
+				"_lan",
+				"_landed	var"
+			],
+			[
+				"_s",
+				"_sprite	var"
+			],
+			[
+				"to",
+				"toDegrees( radians : Float )	Float"
+			],
+			[
+				"_l",
+				"_landingOn	var"
+			],
+			[
+				"space",
+				"spaceshipSprite	var"
+			],
+			[
+				"s",
+				"scaleY	flambe.animation.AnimatedFloat"
+			],
+			[
+				"get",
+				"getNaturalHeight"
+			],
+			[
+				"_mv",
+				"_moveSpeed	var"
+			],
+			[
+				"g",
+				"getTexture(...)	flambe.display.Texture"
+			],
+			[
+				"sca",
+				"scaleY	flambe.animation.AnimatedFloat"
+			],
+			[
+				"_pla",
+				"_planetLabel	var"
+			],
+			[
+				"q",
+				"quadInOut( t : Float )	Float"
+			],
+			[
+				"di",
+				"disablePixelSnapping()	flambe.display.Sprite"
+			],
+			[
+				"F",
+				"FpsDisplay"
+			],
+			[
+				"x",
+				"setXY(...)	flambe.display.Sprite"
+			],
+			[
+				"an",
+				"anchorY	flambe.animation.AnimatedFloat"
+			],
+			[
+				"seta",
+				"setAnchor(...)	flambe.display.Sprite"
+			],
+			[
+				"e",
+				"emitX	flambe.animation.AnimatedFloat"
+			],
+			[
+				"al",
+				"alpha	flambe.animation.AnimatedFloat"
+			],
+			[
+				"text",
+				"TextSprite	class"
+			],
+			[
+				"_pl",
+				"_planetLabel	var"
+			],
+			[
+				"set",
+				"setXY"
+			],
+			[
+				"po",
+				"pointerIn	flambe.util.Signal1<flambe.input.PointerEvent>"
+			],
+			[
+				"on",
+				"onPointerMove(...)	Unknown<5>"
+			],
+			[
+				"el",
+				"elasticInOut( t : Float )	Float"
+			],
+			[
+				"ani",
+				"animation	package"
+			],
+			[
+				"mo",
+				"mouse	flambe.subsystem.MouseSystem"
+			],
+			[
+				"K",
+				"Key	class"
+			],
+			[
+				"_mo",
+				"_moveToY	var"
+			],
+			[
+				"A",
+				"AnimateTo	class"
+			],
+			[
+				"M",
+				"MoveTo	class"
+			],
+			[
+				"b",
+				"bounceOut( t : Float )	Float"
+			],
+			[
+				"sc",
+				"scaleX	flambe.animation.AnimatedFloat"
+			],
+			[
+				"tra",
+				"travelTime	var"
+			],
+			[
+				"anch",
+				"anchorX	flambe.animation.AnimatedFloat"
+			],
+			[
+				"point",
+				"pointerX	var"
+			],
+			[
+				"filen",
+				"fileName	var"
+			],
+			[
+				"str",
+				"String"
+			],
+			[
+				"ex",
+				"expoInOut( t : Float )	Float"
+			],
+			[
+				"anchor",
+				"anchorY	var"
+			],
+			[
+				"worlds",
+				"worldSprite	var"
+			],
+			[
+				"dis",
+				"disablePointer()	flambe.display.Sprite"
+			],
+			[
+				"poin",
+				"pointerEnabled	Bool"
+			],
+			[
+				"view",
+				"viewY	Float"
+			],
+			[
+				"em",
+				"emitterMold	var"
+			],
+			[
+				"Emitter",
+				"emitterMold	var"
+			],
+			[
+				"score",
+				"scoreText	var"
+			],
+			[
+				"ShowG",
+				"ShowGameOverScreen	function"
+			],
+			[
+				"planeS",
+				"planeSignalConnection	var"
+			],
+			[
+				"remove",
+				"removeChild(...)	Unknown<2>"
+			],
+			[
+				"gameOver",
+				"gameOverScreen	var"
+			],
+			[
+				"sy",
+				"System	flambe"
+			],
+			[
+				"gameO",
+				"gameOverScoreText	var"
+			],
+			[
+				"gameOverS",
+				"gameOverScoreText	var"
+			],
+			[
+				"Tex",
+				"TextSprite	class"
+			],
+			[
+				"ro",
+				"rotation	flambe.animation.AnimatedFloat"
+			],
+			[
+				"ene",
+				"enemy"
+			],
+			[
+				"map",
+				"mapWidth"
+			],
+			[
+				"Rou",
+				"RogueLite"
+			],
+			[
+				"setC",
+				"setCollisionGroup"
+			],
+			[
+				"bullets",
+				"bulletsCollisionGroup"
+			],
+			[
+				"pathf",
+				"pathfinder"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/ludumdare/Cursor.hx",
+			"settings":
+			{
+				"buffer_size": 669,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ludumdare/GameContext.hx",
+			"settings":
+			{
+				"buffer_size": 1680,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ludumdare/LevelModel.hx",
+			"settings":
+			{
+				"buffer_size": 8046,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ludumdare/Main.hx",
+			"settings":
+			{
+				"buffer_size": 1748,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ludumdare/Player.hx",
+			"settings":
+			{
+				"buffer_size": 6253,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ludumdare/PlayScene.hx",
+			"settings":
+			{
+				"buffer_size": 2865,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ludumdare/PreloaderScene.hx",
+			"settings":
+			{
+				"buffer_size": 2017,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ludumdare/PromptScene.hx",
+			"settings":
+			{
+				"buffer_size": 2172,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ludumdare/Vector.hx",
+			"settings":
+			{
+				"buffer_size": 2125,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/flambe.sublime-build",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"haxe",
+				"Haxelib: List Installed"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"plain",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"syntax tas",
+				"Set Syntax: Tasks"
+			],
+			[
+				"n",
+				"Tasks: New"
+			],
+			[
+				"new ",
+				"Tasks: New"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 579.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/nissen/code/ld29/build/package.json",
+		"/Users/nissen/code/ld29/flambe.yaml",
+		"/Users/nissen/code/ld29/src/planetarium/Main.hx",
+		"/Users/nissen/code/ld29/src/planetarium/LevelModel.hx",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/Cursor.hx",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/Spaceship.hx",
+		"/usr/lib/haxe/lib/sfxr/0,1,3/vault/Sfxr.hx",
+		"/Users/nissen/code/planetarium-flambe/assets/main/planet.pxm",
+		"/Users/nissen/code/parsecs/src/core/parsecs.js",
+		"/Users/nissen/code/parsecs/game/planetarium.js",
+		"/Users/nissen/code/my-flambe/src/flambe/math/Point.hx",
+		"/Users/nissen/code/planetarium-flambe/node_modules/nodewebkit/node_modules/download/node_modules/decompress/node_modules/map-key/node_modules/mout/lang/isPlainObject.js",
+		"/Users/nissen/code/my-flambe/src/flambe/display/Font.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/display/TextSprite.hx",
+		"/Users/nissen/code/planetarium-flambe/.gitignore",
+		"/Users/nissen/code/planetarium-flambe/build/.cache/air/config-android.xml",
+		"/Users/nissen/code/planetarium-flambe/node_modules/node-webkit-builder/node_modules/optimist/example/line_count_options.js",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/PlanetariumContext.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/display/Sprite.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/math/Matrix.hx",
+		"/Users/nissen/code/flambe-test/src/quickstart/Main.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/math/FMath.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/util/Random.hx",
+		"/Users/nissen/code/planetarium-flambe/node_modules/node-webkit-builder/node_modules/archiver/CONTRIBUTING.md",
+		"/Users/nissen/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/nissen/code/planetarium-flambe/node_modules/nodewebkit/node_modules/download/node_modules/decompress/node_modules/map-key/node_modules/mout/lang/isNull.js",
+		"/Users/nissen/code/planetarium-flambe/web/index.html",
+		"/Users/nissen/code/planetarium-flambe/assets/main/particles/trail.pex",
+		"/Users/nissen/code/planetarium-flambe/assets/main/particles/love.pex",
+		"/Users/nissen/code/planetarium-flambe/assets/main/particles/explode.pex",
+		"/Users/nissen/code/planetarium-flambe/Project.hxproj",
+		"/Users/nissen/code/flambe-demos/particles/src/ParticlesMain.hx",
+		"/Users/nissen/code/flambe-demos/dragging/src/DraggingMain.hx",
+		"/Users/nissen/code/flambe-demos/dragging/src/Draggable.hx",
+		"/Users/nissen/code/flambe-demos/shmup/src/shmup/Plane.hx",
+		"/Users/nissen/code/planetarium-flambe/assets/main/fonts/Light.fnt",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/LevelModel.hx",
+		"/Users/nissen/code/flambe-demos/shmup/src/shmup/LevelModel.hx",
+		"/Users/nissen/code/flambe-demos/shmup/src/shmup/ai/MoveStraight.hx",
+		"/Users/nissen/code/flambe-demos/shmup/src/shmup/Bullet.hx",
+		"/Users/nissen/code/planetarium-flambe/build/web/index.html",
+		"/Users/nissen/code/my-flambe/src/flambe/script/Script.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/animation/AnimatedFloat.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/script/AnimateBy.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/platform/KeyCodes.hx",
+		"/usr/lib/haxe/std/haxe/macro/Context.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/script/CallFunction.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/script/AnimateTo.hx",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/PreloaderScene.hx",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/PromptScene.hx",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/Main.hx",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/Assets.hx",
+		"/Users/nissen/code/planetarium-flambe/src/planetarium/FileNamesBuilder.hx",
+		"/Users/nissen/Downloads/empty.json",
+		"/Users/nissen/code/my-flambe/src/flambe/util/Value.hx",
+		"/Users/nissen/code/my-flambe/src/flambe/animation/Ease.hx",
+		"/Users/nissen/code/planetarium-flambe/flambe.yaml",
+		"/Users/nissen/code/flambe-test/src/Cursor.hx",
+		"/usr/lib/haxe/lib/flambe/4,0,0/flambe/Entity.hx",
+		"/Users/nissen/code/flambe-test/src/PlayScreen.hx",
+		"/Users/nissen/code/flambe-test/flambe.yaml",
+		"/Users/nissen/Library/Application Support/Sublime Text 3/Packages/User/flambe.sublime-build",
+		"/Users/nissen/code/flambe-test/src/quickstart/asd.hx",
+		"/Users/nissen/code/flambe-test/src/quickstart/blah.hx",
+		"/Users/nissen/code/flambe-test/src/urgame/Main.hx",
+		"/Users/nissen/code/flambe-test/build/.cache/air/main-android.swf",
+		"/Users/nissen/code/flambe-test/build/.cache/air/config-android.xml",
+		"/Users/nissen/code/roguelite/src/js/sight.js",
+		"/Users/nissen/code/roguelite/src/js/preloader.js",
+		"/Users/nissen/code/roguelite/src/index.html",
+		"/Users/nissen/code/phaser-light-and-magic/game/states/play.js",
+		"/Users/nissen/code/roguelite/src/js/main.js",
+		"/Users/nissen/code/phaser-light-and-magic/index.html",
+		"/Users/nissen/code/phaser-light-and-magic/game/states/foo.js",
+		"/Users/nissen/code/phaser-light-and-magic/game/main.js",
+		"/Users/nissen/code/phaser-light-and-magic/game/states/boot.js",
+		"/Users/nissen/code/phaser-light-and-magic/game/states/preload.js",
+		"/Users/nissen/code/roguelite/.gitignore",
+		"/Users/nissen/code/rougelike/src/js/boot.js",
+		"/Users/nissen/code/rougelike/src/js/preloader.js",
+		"/Users/nissen/code/rougelike/src/js/menu.js",
+		"/Users/nissen/code/rougelike/src/js/main.js",
+		"/Users/nissen/code/rougelike/src/js/game.js",
+		"/Users/nissen/code/rougelike/src/index.html",
+		"/Users/nissen/code/rougelike/.gitignore",
+		"/Users/nissen/code/rougelike/package.json",
+		"/Users/nissen/code/rougelike/src/js/lib/rot.min.js",
+		"/Users/nissen/code/rougelike/src/js/lib/RogueMapGen.js",
+		"/Users/nissen/code/rougelike/src/js/lib/sight.js",
+		"/Users/nissen/code/rougelike/src/assets/tilemaps/maps/desert.json",
+		"/Users/nissen/code/rougelike/src/assets/tilemaps/maps/collision_test.json",
+		"/Users/nissen/code/rougelike/src/js/lib/PathFinderPlugin.js",
+		"/Users/nissen/code/rougelike/src/css/main.css",
+		"/Users/nissen/code/rougelike/node_modules/gulp-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
+		"/Users/nissen/code/rougelike/node_modules/gulp-util/lib/isNull.js",
+		"/Users/nissen/code/rougelike/node_modules/gulp/node_modules/liftoff/node_modules/findup-sync/node_modules/glob/test/pause-resume.js",
+		"/Users/nissen/code/rougelike/src/assets/tilemaps/tmx/map draw.tmx",
+		"/Users/nissen/code/rougelike/src/assets/minecraftia.xml",
+		"/Users/nissen/code/rougelike/node_modules/tiny-lr/node_modules/debug/debug.js",
+		"/Users/nissen/code/rougelike/node_modules/gulp-util/lib/date.js",
+		"/Users/nissen/code/planetarium-phaser/src/js/menu.js",
+		"/Users/nissen/projects/testing.todo",
+		"/Users/nissen/code/planetarium-phaser/src/js/game.js",
+		"/Users/nissen/code/flixel-tests/HelloWorld/source/GameClass.hx",
+		"/Users/nissen/code/flixel-tests/HelloWorld/source/MenuState.hx",
+		"/Users/nissen/code/flixel-tests/HelloWorld/source/Main.hx"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 98.0,
+		"where_history":
+		[
+			"",
+			"html",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Planetarium",
+			"planetarium",
+			"html or html5",
+			"or",
+			"html5",
+			"ByteArray",
+			"sprite",
+			"startRotation",
+			"_initial",
+			"rot",
+			"planet",
+			"position",
+			"radius",
+			"spaceshipSprite",
+			"planetSprite",
+			"-",
+			"x",
+			" * dx",
+			"_rotationS",
+			"planet",
+			"connecth",
+			"connectH",
+			"pointerIn",
+			"_planetLa",
+			"_layout",
+			"updateL",
+			"light",
+			"_sprite",
+			"Sprite",
+			"sprite",
+			"Sprite",
+			"sprite",
+			"Sprite",
+			"sprite",
+			"_sprite",
+			"2",
+			"matrix",
+			"1",
+			"VIEW_MATRIX_DIRTY",
+			"_flags",
+			"dirtyMa",
+			"rotation",
+			"Math.random()",
+			"random",
+			"Math.random()",
+			"planet",
+			"    .",
+			"_planetLayer",
+			"this",
+			"_moving",
+			"flambe.",
+			"8",
+			"0.5",
+			"5",
+			"textalign",
+			"sprite",
+			"pointerY",
+			"pointerX",
+			"Int",
+			"Float",
+			"blah",
+			"String",
+			"EQUALS",
+			"Equals",
+			"EQUALS",
+			"distance",
+			"sprite",
+			"x",
+			"Sprite",
+			"sprite",
+			"*",
+			"move",
+			"behavior",
+			"travelTime",
+			"_behavior",
+			"10",
+			"worldScript",
+			"world",
+			"cloud",
+			"+",
+			" * (1/_zoom)",
+			"pointerY",
+			"pointerX",
+			"height",
+			"width",
+			"camera",
+			"* _zoom",
+			"_zoom",
+			"clampe",
+			"c",
+			" * (1/_zoom)",
+			"_zoom",
+			"width",
+			"camera.zoom",
+			"pointer",
+			"width",
+			"Width",
+			"-",
+			"_anchor",
+			"+",
+			"worldScript",
+			"pointerX",
+			"(ELASTIC_PERIOD / PI2 * Math.asin(1 / ELASTIC_AMPLITUDE)",
+			"PI2",
+			"2PI",
+			"halfPI",
+			"PI",
+			"(2 * Math.PI)",
+			"PI2",
+			"expoOut",
+			"cursor",
+			"player",
+			"plane",
+			"Shmup",
+			"gameScreen",
+			"10",
+			"scoreText",
+			"time",
+			"Time",
+			"time",
+			"scoreText",
+			"score",
+			"gameScreen",
+			"var",
+			"4.0",
+			"17",
+			"ship",
+			"10"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 8,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/ludumdare/Cursor.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 669,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								244,
+								244
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/ludumdare/GameContext.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1680,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/ludumdare/LevelModel.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8046,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/ludumdare/Main.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1748,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/ludumdare/Player.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/ludumdare/PlayScene.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2865,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/ludumdare/PreloaderScene.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2017,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/ludumdare/PromptScene.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2172,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/ludumdare/Vector.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2125,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								116,
+								116
+							]
+						],
+						"settings":
+						{
+							"haxe-build-id": 0,
+							"syntax": "Packages/Haxe/Haxe.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 132.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.haxe-doc":
+	{
+		"height": 132.0
+	},
+	"project": "ld29.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"flam",
+				"flambe.yaml"
+			],
+			[
+				"in",
+				"web/index.html"
+			],
+			[
+				"pl",
+				"src/planetarium/Planet.hx"
+			],
+			[
+				"ind",
+				"web/index.html"
+			],
+			[
+				"conte",
+				"src/planetarium/PlanetariumContext.hx"
+			],
+			[
+				"contex",
+				"src/planetarium/PlanetariumContext.hx"
+			],
+			[
+				"tra",
+				"assets/main/particles/trail.pex"
+			],
+			[
+				"plan",
+				"src/planetarium/PlanetariumContext.hx"
+			],
+			[
+				"level",
+				"src/planetarium/LevelModel.hx"
+			],
+			[
+				"",
+				"flambe.yaml"
+			],
+			[
+				"main",
+				"src/js/main.js"
+			],
+			[
+				"pre",
+				"src/js/preloader.js"
+			],
+			[
+				"collision_test",
+				"src/assets/tilemaps/maps/collision_test.json"
+			],
+			[
+				"des",
+				"src/assets/tilemaps/maps/desert.json"
+			],
+			[
+				"me",
+				"source/MenuState.hx"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+		"fss_on_distraction_free": false,
+		"fss_on_full_screen": false
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 177.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
