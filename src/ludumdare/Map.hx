@@ -40,21 +40,28 @@ class Map extends Component
         var startTileX :Float = 0; 
         var startTileY :Float = 0;
         // var colors = ["#7FDBFF", "#0074D9", "#001F3F", "#39CCCC", "#2ECC40", "#3D9970", "#01FF70", "#FFDC00", "#FF851B", "#FF4136", "#F012BE", "#B10DC9", "#85144B", "#dddddd", "#aaaaaa"];
+        var emptyTexture = _ctx.pack.getTexture("tiles/empty");
+        var textures = [_ctx.pack.getTexture("tiles/straight"), _ctx.pack.getTexture("tiles/bend")];
 
         for (y in 0...5) { // TODO: X and Y should be swapped for portrait mode
             for (x in 0...7) {
                 var empty = Math.random() < 0.3;
-
-                var tileSprite = new FillSprite((empty ? 0x000000 : Math.floor(Math.random() * 0xFFFFFF)), TILE_SIZE, TILE_SIZE);
+                
+                var texture = empty ? emptyTexture : textures[Math.floor(textures.length * Math.random())];
+                var tileSprite = new ImageSprite(texture);
                 tileSprite.centerAnchor();
                 tileSprite.setXY(WIDTH / 2, HEIGHT / 2);
                 tileSprite.x.animateTo(x * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
                 tileSprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
                 tileSprite.scaleX.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
                 tileSprite.scaleY.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
+                tileSprite.rotation._ = Math.random() < 0.5 ? 0 : 90;
+                // tileSprite.alpha._ = 0.9;
+                //tileSprite.setBlendMode(flambe.display.BlendMode.Add);
 
                 var entity = tiles[y][x];
                 entity.add(tileSprite);
+                // entity.add(new FillSprite(Math.floor(Math.random() * 0xFFFFFF), 128, 128));
                 // entity.add(new WalkableTile());
                 entity.add(new TileData(x, y));
                 owner.addChild(entity);
@@ -139,7 +146,7 @@ class Map extends Component
         for (tile in row) {
             var tileData = tile.get(TileData);
             tileData.tileX = count;
-            var sprite = tile.get(FillSprite);
+            var sprite = tile.get(ImageSprite);
             sprite.x.animateTo(count * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
             count++;
         }
@@ -159,7 +166,7 @@ class Map extends Component
             var tile = column[y];
             var tileData = tile.get(TileData);
             tileData.tileY = y;
-            var sprite = tile.get(FillSprite);
+            var sprite = tile.get(ImageSprite);
             sprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
             tiles[y][index] = tile;
         }

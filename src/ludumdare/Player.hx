@@ -3,7 +3,7 @@ package ludumdare;
 
 import flambe.animation.Ease;
 import flambe.Component;
-import flambe.display.FillSprite;
+import flambe.display.ImageSprite;
 import flambe.display.ImageSprite;
 import flambe.display.Sprite;
 import flambe.Entity;
@@ -43,7 +43,7 @@ class Player extends Component
 
     override public function onUpdate (dt :Float) {
         if (_tile != null) {
-            var tileSprite = _tile.get(FillSprite);
+            var tileSprite = _tile.get(ImageSprite);
             _sprite.setXY(tileSprite.x._, tileSprite.y._);
         }
     }
@@ -82,8 +82,8 @@ class Player extends Component
         // _sprite.x.animateTo(tile.get(Sprite).x._, Math.abs(tile.get(Sprite).x._ - _sprite.x._) / _moveSpeed, Ease.elasticInOut);
         // _sprite.y.animateTo(tile.get(Sprite).y._, Math.abs(tile.get(Sprite).y._ - _sprite.y._) / _moveSpeed, Ease.elasticInOut);
         // _sprite.rotation.animateBy(360, 1, Ease.elasticInOut);
-        // var tileSprite = tile.get(FillSprite);
-        var tileSprite = tile.get(FillSprite);
+        // var tileSprite = tile.get(ImageSprite);
+        var tileSprite = tile.get(ImageSprite);
         var distance = (Math.sqrt(Math.pow(tileSprite.x._ - _sprite.x._, 2) + Math.pow(tileSprite.y._ - _sprite.y._, 2))) / _moveSpeed;
         var moveScript = new Script();
         owner.add(moveScript);
