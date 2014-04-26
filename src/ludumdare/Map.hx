@@ -41,7 +41,7 @@ class Map extends Component
         var startTileY :Float = 0;
         // var colors = ["#7FDBFF", "#0074D9", "#001F3F", "#39CCCC", "#2ECC40", "#3D9970", "#01FF70", "#FFDC00", "#FF851B", "#FF4136", "#F012BE", "#B10DC9", "#85144B", "#dddddd", "#aaaaaa"];
         var emptyTexture = _ctx.pack.getTexture("tiles/empty");
-        var textures = [_ctx.pack.getTexture("tiles/straight"), _ctx.pack.getTexture("tiles/bend")];
+        var textures = [_ctx.pack.getTexture("tiles/straight"), _ctx.pack.getTexture("tiles/bend"), _ctx.pack.getTexture("tiles/block")];
         var selection = new ImageSprite(_ctx.pack.getTexture("tiles/selection"));
         selection.centerAnchor();
         selection.disablePointer();
@@ -152,7 +152,7 @@ class Map extends Component
         }
         var shakeScript = new Script();
         owner.add(shakeScript);
-        shakeScript.run(new Shake(2, 2, 0.3));
+        shakeScript.run(new Shake(2, 1, 0.4));
     }
 
     function moveColumn(index :Int, direction :Float) {
@@ -175,7 +175,7 @@ class Map extends Component
         }
         var shakeScript = new Script();
         owner.add(shakeScript);
-        shakeScript.run(new Shake(2, 2, 0.3));
+        shakeScript.run(new Shake(2, 1, 0.4));
     }
 
     function playSound() {
