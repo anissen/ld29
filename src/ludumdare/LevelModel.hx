@@ -44,31 +44,8 @@ class LevelModel extends Component
         _worldLayer.addChild(_mapLayer = new Entity());
         _worldLayer.addChild(_playerLayer = new Entity());
 
-        for (x in 0...7) { // TODO: X and Y should be swapped for portrait mode
-            for (y in 0...5) {
-                var tileSprite = new FillSprite(Math.floor(Math.random() * 0xFFFFFF), TILE_SIZE, TILE_SIZE);
-                tileSprite.centerAnchor();
-                //tileSprite.setXY(x * TILE_SIZE + TILE_SIZE / 2, y * TILE_SIZE + TILE_SIZE / 2);
-                tileSprite.x.animateTo(x * TILE_SIZE + TILE_SIZE / 2, (x + 1) / 2, Ease.elasticOut);
-                tileSprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, (y + 1) / 2, Ease.elasticOut);
-                // tileSprite.pointerIn.connect(function(_) {
-                //     tileSprite.rotation.animateBy(360, 1);
-                // });
-                var movingTile = false; 
-                tileSprite.pointerDown.connect(function(_) {
-                    //tileSprite.rotation.animateBy(360, 1);
-                    movingTile = true;
-                });
-                tileSprite.pointerUp.connect(function(_) {
-                    movingTile = false;
-                });
-                tileSprite.pointerMove.connect(function(event :PointerEvent) {
-                    if (!movingTile) return;
-                    tileSprite.setXY(event.viewX, event.viewY);
-                });
-                _mapLayer.addChild(new Entity().add(tileSprite));
-            }
-        }
+        var map = new Map(_ctx, "dummy_file", TILE_SIZE, WIDTH, HEIGHT);
+        _mapLayer.addChild(new Entity().add(map));
 
         // Create the player's plane
         var player = new Player(_ctx, "player/player");
