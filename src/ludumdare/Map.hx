@@ -14,6 +14,8 @@ import flambe.sound.Sound;
 import flambe.sound.Playback;
 import flambe.util.Signal1;
 import flambe.display.EmitterSprite;
+import flambe.display.EmitterMold;
+import flambe.display.EmitterSprite;
 
 /** Logic for planes. */
 class Map extends Component
@@ -42,6 +44,10 @@ class Map extends Component
         // var selection = new ImageSprite(_ctx.pack.getTexture("tiles/selection"));
         // selection.centerAnchor();
         // selection.disablePointer();
+
+        var emitterMold :EmitterMold = new EmitterMold(_ctx.pack, "particles/explode");
+        var emitter :EmitterSprite = emitterMold.createEmitter();
+        var emitterEntity :Entity = new Entity().add(emitter);
 
         for (y in 0...5) { // TODO: X and Y should be swapped for portrait mode
             for (x in 0...7) {
@@ -115,8 +121,32 @@ class Map extends Component
                     }
                     if (Math.abs(tileX - startTileX) != 0 && Math.abs(tileY - startTileY) != 0) return;
                     if (Math.abs(tileX - startTileX) != 0) {
+                        var hasBlock = false;
+                        for (tile in getRow(tileY)) {
+                            if (tile.has(BlockTile)) {
+                                var shakeScript = new Script();
+                                tile.add(shakeScript);
+                                shakeScript.run(new Shake(5, 5, 0.5));
+                                emitter.setXY(tile.get(Sprite).x._, tile.get(Sprite).y._);
+                                emitter.restart();
+                                hasBlock = true;
+                            }
+                        }
+                        if (hasBlock) return;
                         moveRow(tileY, tileX - startTileX);
                     } else if (Math.abs(tileY - startTileY) != 0) {
+                        var hasBlock = false;
+                        for (tile in getColumn(tileX)) {
+                            if (tile.has(BlockTile)) {
+                                var shakeScript = new Script();
+                                tile.add(shakeScript);
+                                shakeScript.run(new Shake(5, 5, 0.5));
+                                emitter.setXY(tile.get(Sprite).x._, tile.get(Sprite).y._);
+                                emitter.restart();
+                                hasBlock = true;
+                            }
+                        }
+                        if (hasBlock) return;
                         moveColumn(tileX, tileY - startTileY);
                     }
                 });
@@ -130,6 +160,8 @@ class Map extends Component
         playerEntity = new Entity().add(player);
         // playerEntity.get(Sprite).setXY(TILE_SIZE / 2, TILE_SIZE / 2);
         owner.addChild(playerEntity);
+
+        owner.addChild(emitterEntity);
 
         // calculateGraph();
 
@@ -166,6 +198,10 @@ class Map extends Component
     //     graph.DFS(preflight, seed, f);
     // }
 
+    function getRow(index :Int) {
+        return tiles[index];
+    }
+
     function getColumn(index :Int) {
         var column = new Array<Entity>();
         for (row in tiles) {
@@ -187,6 +223,9 @@ class Map extends Component
             tileData.tileX = count;
             var sprite = tile.get(ImageSprite);
             sprite.x.animateTo(count * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
+            // if (tile.has(EmitterSprite)) {
+            //     tile.get(EmitterSprite).restart();
+            // }
             count++;
         }
         var shakeScript = new Script();
