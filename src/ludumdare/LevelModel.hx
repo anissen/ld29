@@ -37,33 +37,14 @@ class LevelModel extends Component
         owner.addChild(_worldLayer);
 
         // Add a scrolling ocean background
-        var background = new FillSprite(0x444444, WIDTH, HEIGHT);
-        background.centerAnchor();
-        background.setXY(WIDTH / 2, HEIGHT / 2);
-        _worldLayer.addChild(new Entity().add(background));
+        var background = new PatternSprite(_ctx.pack.getTexture("backgrounds/background"), WIDTH, HEIGHT);
+        background.setScale(2);
+        _worldLayer.addChild(new Entity().add(background).add(new BackgroundScroller(100)));
         _worldLayer.addChild(_mapLayer = new Entity());
-        // _worldLayer.addChild(_playerLayer = new Entity());
 
         var map = new Map(_ctx, "dummy_file", TILE_SIZE, WIDTH, HEIGHT);
         _mapLayer.add(new Sprite());
         _mapLayer.add(map);
-
-        
-        // player.move(System.stage.width / 2, System.stage.height / 2);
-
-        // _playerLayer.addChild(playerEntity);
-
-        // plane.onMoveStart.connect(function(_) {
-        //     _moving = true;
-        //     _zoom.animateTo(1, 5, flambe.animation.Ease.quadInOut);
-        // });
-
-        // plane.onMoveStop.connect(function(_) {
-        //     _moving = false;
-        //     _zoom.animateTo(4, 5, flambe.animation.Ease.quadInOut);
-        // });
-
-        // _ctx.pack.getSound("music/Coel_Healy_Kep").loop(1);
 
         // speak("System operational");
     }

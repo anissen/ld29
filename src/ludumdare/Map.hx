@@ -41,7 +41,7 @@ class Map extends Component
         var startTileY :Float = 0;
         // var colors = ["#7FDBFF", "#0074D9", "#001F3F", "#39CCCC", "#2ECC40", "#3D9970", "#01FF70", "#FFDC00", "#FF851B", "#FF4136", "#F012BE", "#B10DC9", "#85144B", "#dddddd", "#aaaaaa"];
         var emptyTexture = _ctx.pack.getTexture("tiles/empty");
-        var textures = [_ctx.pack.getTexture("tiles/straight"), _ctx.pack.getTexture("tiles/bend"), _ctx.pack.getTexture("tiles/blind"), _ctx.pack.getTexture("tiles/t")];
+        var textures = [_ctx.pack.getTexture("tiles/straight"), _ctx.pack.getTexture("tiles/bend")];
         var selection = new ImageSprite(_ctx.pack.getTexture("tiles/selection"));
         selection.centerAnchor();
         selection.disablePointer();
@@ -58,7 +58,8 @@ class Map extends Component
                 tileSprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
                 tileSprite.scaleX.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
                 tileSprite.scaleY.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
-                tileSprite.rotation._ = Math.random() < 0.5 ? 0 : 90;
+                var rotations = [0.0, 90.0, 180.0, 270.0];
+                tileSprite.rotation.animateTo(rotations[Math.floor(Math.random() * rotations.length)], 1 + Math.random(), Ease.elasticOut);
                 // tileSprite.alpha._ = 0.9;
                 //tileSprite.setBlendMode(flambe.display.BlendMode.Add);
 
