@@ -33,8 +33,8 @@ class Player extends Component
             owner.add(_sprite = new ImageSprite(normal));
         }
         _sprite.texture = normal;
-        _sprite.scaleX.animateTo(0.25, 1, flambe.animation.Ease.bounceOut);
-        _sprite.scaleY.animateTo(0.25, 1, flambe.animation.Ease.bounceOut);
+        _sprite.scaleX.animateTo(0.75, 1, flambe.animation.Ease.bounceOut);
+        _sprite.scaleY.animateTo(0.75, 1, flambe.animation.Ease.bounceOut);
         // _sprite.setScale(0.1);
         _sprite.disablePixelSnapping();
         _sprite.disablePointer();
@@ -72,24 +72,26 @@ class Player extends Component
         _sprite.y.animateTo(y, Math.abs(y - _sprite.y._) / _moveSpeed, Ease.elasticInOut);
     }
 
-    public function moveToTile (tile :Entity, tileX :Int, tileY :Int) {
+    public function moveToTile (tile :Entity) {
         // if (_tile != null)
         //     _tile.removeChild(owner);
         // tile.addChild(owner);
 
-        _tileX = tileX;
-        _tileY = tileY;
+        // _tileX = tileX;
+        // _tileY = tileY;
         // _sprite.x.animateTo(tile.get(Sprite).x._, Math.abs(tile.get(Sprite).x._ - _sprite.x._) / _moveSpeed, Ease.elasticInOut);
         // _sprite.y.animateTo(tile.get(Sprite).y._, Math.abs(tile.get(Sprite).y._ - _sprite.y._) / _moveSpeed, Ease.elasticInOut);
         // _sprite.rotation.animateBy(360, 1, Ease.elasticInOut);
         // var tileSprite = tile.get(FillSprite);
-        var distance = (Math.sqrt(Math.pow(tile.get(FillSprite).x._ - _sprite.x._, 2) + Math.pow(tile.get(FillSprite).y._ - _sprite.y._, 2))) / _moveSpeed;
+        var tileSprite = tile.get(FillSprite);
+        var distance = (Math.sqrt(Math.pow(tileSprite.x._ - _sprite.x._, 2) + Math.pow(tileSprite.y._ - _sprite.y._, 2))) / _moveSpeed;
         var moveScript = new Script();
         owner.add(moveScript);
         moveScript.run(new Sequence([
-            new MoveTo(tile.get(FillSprite).x._, tile.get(FillSprite).y._, distance, Ease.elasticOut, Ease.elasticOut),
+            new MoveTo(tileSprite.x._, tileSprite.y._, distance, Ease.elasticOut, Ease.elasticOut),
             new CallFunction(function () {
                 _tile = tile;
+                moveScript.dispose();
             })
         ]));
         _tile = null;
@@ -104,7 +106,7 @@ class Player extends Component
     private var _script :Script;
     private var _moveToX :Float;
     private var _moveToY :Float;
-    private var _tile :Entity;
-    public var _tileX :Int;
-    public var _tileY :Int;
+    public var _tile :Entity;
+    // public var _tileX :Int;
+    // public var _tileY :Int;
 }

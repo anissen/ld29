@@ -25,14 +25,16 @@ class Tile extends Component
 
     override public function onAdded ()
     {
-        var tileSprite = new FillSprite(Math.floor(Math.random() * 0xFFFFFF), _width, _height);
+        var tileSprite = new FillSprite((empty ? 0x000000 : Math.floor(Math.random() * 0xFFFFFF)), TILE_SIZE, TILE_SIZE);
         tileSprite.centerAnchor();
         tileSprite.setXY(WIDTH / 2, HEIGHT / 2);
         tileSprite.x.animateTo(x * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
         tileSprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
+        tileSprite.scaleX.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
+        tileSprite.scaleY.animateTo(1.0, 1 + Math.random(), Ease.elasticOut);
 
         var movingTile = false;
-        var startX :Float = 0; 
+        var startX :Float = 0;
         var startY :Float = 0;
         // var startTime :Int = 0;
         // tileSprite.pointerIn.connect(function(event :PointerEvent) {

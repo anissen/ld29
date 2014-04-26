@@ -15,11 +15,12 @@ import flambe.sound.Playback;
 import flambe.util.Signal1;
 import flambe.display.EmitterSprite;
 
-class WalkableTile extends Component
+class TileData extends Component
 {
-    public function new ()
+    public function new (tileX :Int, tileY :Int)
     {
-
+        this.tileX = tileX;
+        this.tileY = tileY;
     }
 
     override public function onAdded ()
@@ -39,4 +40,7 @@ class WalkableTile extends Component
     override public function onUpdate (dt :Float) {
         
     }
+
+    public var tileX :Int;
+    public var tileY :Int;
 }

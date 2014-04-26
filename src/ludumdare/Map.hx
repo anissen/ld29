@@ -56,6 +56,7 @@ class Map extends Component
                 var entity = tiles[y][x];
                 entity.add(tileSprite);
                 // entity.add(new WalkableTile());
+                entity.add(new TileData(x, y));
                 owner.addChild(entity);
 
                 // TODO: Tile should have tileX, tileY properties
@@ -75,11 +76,13 @@ class Map extends Component
                         // TODO: particle effect?
                         if (empty) return;
                         var player = playerEntity.get(Player);
-                        var playerTileX = player._tileX;
-                        var playerTileY = player._tileY;
+                        if (player._tile == null) return;
+                        var playerTileData = player._tile.get(TileData);
+                        var playerTileX = playerTileData.tileX;
+                        var playerTileY = playerTileData.tileY;
                         var playerSprite = playerEntity.get(Sprite);
                         if (Math.abs(playerTileX - tileX) + Math.abs(playerTileY - tileY) == 1) {
-                            player.moveToTile(tileSprite.owner, tileX, tileY);
+                            player.moveToTile(tileSprite.owner);
                         }
                         return;
                     }
@@ -107,10 +110,10 @@ class Map extends Component
         // Create the player's plane
         var player = new Player(_ctx, "player/player");
         playerEntity = new Entity().add(player);
-        playerEntity.get(Sprite).setXY(TILE_SIZE / 2, TILE_SIZE / 2);
+        // playerEntity.get(Sprite).setXY(TILE_SIZE / 2, TILE_SIZE / 2);
         owner.addChild(playerEntity);
 
-        player.moveToTile(tiles[2][2], 2, 2);
+        player.moveToTile(tiles[2][2]);
     }
 
     override public function onUpdate (dt :Float) {
@@ -134,6 +137,8 @@ class Map extends Component
         }
         var count = 0;
         for (tile in row) {
+            var tileData = tile.get(TileData);
+            tileData.tileX = count;
             var sprite = tile.get(FillSprite);
             sprite.x.animateTo(count * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
             count++;
@@ -152,6 +157,8 @@ class Map extends Component
         }
         for (y in 0...column.length) {
             var tile = column[y];
+            var tileData = tile.get(TileData);
+            tileData.tileY = y;
             var sprite = tile.get(FillSprite);
             sprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
             tiles[y][index] = tile;
