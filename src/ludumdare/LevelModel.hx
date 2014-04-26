@@ -45,7 +45,8 @@ class LevelModel extends Component
         // _worldLayer.addChild(_playerLayer = new Entity());
 
         var map = new Map(_ctx, "dummy_file", TILE_SIZE, WIDTH, HEIGHT);
-        _mapLayer.addChild(new Entity().add(map));
+        _mapLayer.add(new Sprite());
+        _mapLayer.add(map);
 
         
         // player.move(System.stage.width / 2, System.stage.height / 2);

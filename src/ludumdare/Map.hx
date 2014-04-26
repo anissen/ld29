@@ -41,7 +41,10 @@ class Map extends Component
         var startTileY :Float = 0;
         // var colors = ["#7FDBFF", "#0074D9", "#001F3F", "#39CCCC", "#2ECC40", "#3D9970", "#01FF70", "#FFDC00", "#FF851B", "#FF4136", "#F012BE", "#B10DC9", "#85144B", "#dddddd", "#aaaaaa"];
         var emptyTexture = _ctx.pack.getTexture("tiles/empty");
-        var textures = [_ctx.pack.getTexture("tiles/straight"), _ctx.pack.getTexture("tiles/bend")];
+        var textures = [_ctx.pack.getTexture("tiles/straight"), _ctx.pack.getTexture("tiles/bend"), _ctx.pack.getTexture("tiles/blind"), _ctx.pack.getTexture("tiles/t")];
+        var selection = new ImageSprite(_ctx.pack.getTexture("tiles/selection"));
+        selection.centerAnchor();
+        selection.disablePointer();
 
         for (y in 0...5) { // TODO: X and Y should be swapped for portrait mode
             for (x in 0...7) {
@@ -66,16 +69,21 @@ class Map extends Component
                 entity.add(new TileData(x, y));
                 owner.addChild(entity);
 
-                // TODO: Tile should have tileX, tileY properties
-                // that should be updated on moveRow/moveColumn
-
                 tileSprite.pointerDown.connect(function(event :PointerEvent) {
                     mouseDown = true;
                     startTileX = Math.floor(event.viewX / TILE_SIZE);
                     startTileY = Math.floor(event.viewY / TILE_SIZE);
+                    selection.setXY(startTileX * TILE_SIZE + TILE_SIZE / 2, startTileY * TILE_SIZE + TILE_SIZE / 2);
+                    selection.scaleX.animateTo(1.0, 0.5, Ease.elasticOut);
+                    selection.scaleY.animateTo(1.0, 0.5, Ease.elasticOut);
+                    selection.alpha.animateTo(1.0, 0.5, Ease.elasticOut);
                 });
                 tileSprite.pointerUp.connect(function(event :PointerEvent) {
                     if (!mouseDown) return;
+                    selection.scaleX.animateTo(0.0, 0.5, Ease.elasticOut);
+                    selection.scaleY.animateTo(0.0, 0.5, Ease.elasticOut);
+                    selection.alpha.animateTo(0.0, 0.5, Ease.elasticOut);
+
                     mouseDown = false;
                     var tileX = Math.floor(event.viewX / TILE_SIZE);
                     var tileY = Math.floor(event.viewY / TILE_SIZE);
@@ -100,19 +108,10 @@ class Map extends Component
                         moveColumn(tileX, tileY - startTileY);
                     }
                 });
-
-                if (empty) continue;
-
-                tileSprite.pointerIn.connect(function(event :PointerEvent) {
-                    tileSprite.scaleX.animateTo(0.9, 0.5, Ease.elasticOut);
-                    tileSprite.scaleY.animateTo(0.9, 0.5, Ease.elasticOut);
-                });
-                tileSprite.pointerOut.connect(function(event :PointerEvent) {
-                    tileSprite.scaleX.animateTo(1.0, 0.5, Ease.elasticOut);
-                    tileSprite.scaleY.animateTo(1.0, 0.5, Ease.elasticOut);
-                });
             }
         }
+
+        owner.addChild(new Entity().add(selection));
 
         // Create the player's plane
         var player = new Player(_ctx, "player/player");
@@ -150,6 +149,9 @@ class Map extends Component
             sprite.x.animateTo(count * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
             count++;
         }
+        var shakeScript = new Script();
+        owner.add(shakeScript);
+        shakeScript.run(new Shake(2, 2, 0.3));
     }
 
     function moveColumn(index :Int, direction :Float) {
@@ -170,6 +172,9 @@ class Map extends Component
             sprite.y.animateTo(y * TILE_SIZE + TILE_SIZE / 2, 1, Ease.elasticOut);
             tiles[y][index] = tile;
         }
+        var shakeScript = new Script();
+        owner.add(shakeScript);
+        shakeScript.run(new Shake(2, 2, 0.3));
     }
 
     function playSound() {
