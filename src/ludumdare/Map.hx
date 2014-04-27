@@ -18,6 +18,7 @@ import flambe.util.Signal1;
 import flambe.display.EmitterSprite;
 import flambe.display.EmitterMold;
 import flambe.display.EmitterSprite;
+import flambe.util.Value;
 
 /** Logic for planes. */
 class Map extends Component
@@ -29,8 +30,7 @@ class Map extends Component
         TILE_SIZE = tileSize;
         WIDTH = width;
         HEIGHT = height;
-
-
+        moves = new Value<Int>(0);
     }
 
     override public function onAdded ()
@@ -125,6 +125,7 @@ class Map extends Component
                         if (Math.abs(playerTileX - tileX) + Math.abs(playerTileY - tileY) == 1) {
                             if (canMoveToTile(playerTileData, tileData)) {
                                 player.moveToTile(tileSprite.owner);
+                                moves._++;
                             }
                         }
                         return;
@@ -144,6 +145,7 @@ class Map extends Component
                         }
                         if (hasBlock) return;
                         moveRow(tileY, tileX - startTileX);
+                        moves._++;
                     } else if (Math.abs(tileY - startTileY) != 0) {
                         var hasBlock = false;
                         for (tile in getColumn(tileX)) {
@@ -158,6 +160,7 @@ class Map extends Component
                         }
                         if (hasBlock) return;
                         moveColumn(tileX, tileY - startTileY);
+                        moves._++;
                     }
                 });
             }
@@ -333,4 +336,6 @@ class Map extends Component
     //private var _moveListener :flambe.System.Sig;
     public var onMoveStart :Signal1<Entity> = new Signal1<Entity>();
     public var onMoveStop :Signal1<Entity> = new Signal1<Entity>();
+
+    public var moves (default, null) :Value<Int>;
 }

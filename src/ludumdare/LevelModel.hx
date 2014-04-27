@@ -28,6 +28,7 @@ class LevelModel extends Component
     {
         _ctx = ctx;
         _zoom = new AnimatedFloat(1);
+        moves = new Value<Int>(0);
     }
 
     override public function onAdded ()
@@ -51,6 +52,11 @@ class LevelModel extends Component
         var map = new Map(_ctx, "levels/level" + index + ".lvl", TILE_SIZE, WIDTH, HEIGHT);
         _mapLayer.add(new Sprite());
         _mapLayer.add(map);
+
+        movesBeforeMap = moves._;
+        map.moves.watch(function (movesOnMap, _) {
+            moves._ = movesBeforeMap + movesOnMap;
+        });
         
         var player = map.playerEntity.get(Player);
         player.onWin.connect(function() {
@@ -108,4 +114,7 @@ class LevelModel extends Component
     private static var TILE_SIZE :Int = 128;
     private static var HEIGHT :Int = TILE_SIZE * 5; // 640;
     private static var WIDTH :Int = TILE_SIZE * 7; //approx. 960;
+
+    public var movesBeforeMap :Int = 0;
+    public var moves (default, null) :Value<Int>;
 }

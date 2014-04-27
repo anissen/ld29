@@ -1,6 +1,7 @@
 
 package ludumdare;
 
+import flambe.animation.Ease;
 import flambe.display.Sprite;
 import flambe.Entity;
 import flambe.input.Key;
@@ -25,9 +26,19 @@ class PlayScene
         scene.add(level);
 
         // Show a score label on the top left
-        // var scoreLabel = new TextSprite(ctx.darkFont);
-        // scoreLabel.setXY(5, 5);
-        // scene.addChild(new Entity().add(scoreLabel));
+        var scoreLabel = new TextSprite(ctx.arialFont);
+        scoreLabel.setXY(System.stage.width / 2, 20);
+        scoreLabel.centerAnchor();
+        scoreLabel.setAlign(flambe.display.TextAlign.Center);
+        scene.addChild(new Entity().add(scoreLabel));
+        level.moves.watch(function (moves, _) {
+            scoreLabel.text = "Moves used: " + moves;
+            scoreLabel.setScale(1.5);
+            scoreLabel.scaleX.animateTo(1.0, 0.7, Ease.elasticOut);
+            scoreLabel.scaleY.animateTo(1.0, 0.7, Ease.elasticOut);
+            scoreLabel.letterSpacing._ = 5;
+            scoreLabel.letterSpacing.animateTo(1.0, 0.7, Ease.elasticOut);
+        });
 
         // Show a pause button
         // var pause = new ImageSprite(ctx.pack.getTexture("buttons/Pause"));
@@ -57,7 +68,7 @@ class PlayScene
         #if debug
         addDebugSpeedAdjuster(System.root);
 
-        var font:Font = ctx.darkFont; 
+        var font:Font = ctx.arialFont; 
         var fpsMeterEntity = new Entity().add(new TextSprite(font)).add(new FpsDisplay());
         System.root.addChild(fpsMeterEntity);
         #end
