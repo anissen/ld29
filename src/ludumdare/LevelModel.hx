@@ -56,14 +56,12 @@ class LevelModel extends Component
         _mapLayer.add(new Sprite());
         _mapLayer.add(map);
 
-        movesBeforeMap = moves._;
+        totalMoves += moves._;
         map.moves.watch(function (movesOnMap, _) {
-            moves._ = /* movesBeforeMap + */ movesOnMap;
+            moves._ = /* totalMoves + */ movesOnMap;
         });
 
-        
-
-        var levelMessage :String = _ctx.messages.get("level" + index);
+        var levelMessage :String = _ctx.messages.get("level" + index, [totalMoves]);
         if (levelMessage != "level" + index) { 
             var worldSpeed = new SpeedAdjuster(0.5);
             _worldLayer.add(worldSpeed);
@@ -142,11 +140,11 @@ class LevelModel extends Component
     private var _playerLayer  :Entity;
     private var _zoom :AnimatedFloat;
     private var _moving :Bool = false;
-    private var _levelIndex :Int = 3;
+    private var _levelIndex :Int = 1;
     private static var TILE_SIZE :Int = 128;
     private static var HEIGHT :Int = TILE_SIZE * 5; // 640;
     private static var WIDTH :Int = TILE_SIZE * 7; //approx. 960;
 
-    public var movesBeforeMap :Int = 0;
+    public var totalMoves :Int = 0;
     public var moves (default, null) :Value<Int>;
 }

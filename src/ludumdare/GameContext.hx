@@ -95,7 +95,7 @@ class GameContext
     private var explosionParams :vault.SfxrParams;
     public function playExplosion() {
         explosionParams.mutate();
-        explosionParams.sustainTime = 0.4;
+        explosionParams.sustainTime = 0.3;
         explosionParams.masterVolume = 0.3;
         var sfxr = new vault.Sfxr(explosionParams);
         sfxr.play();

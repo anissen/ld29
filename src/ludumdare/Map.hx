@@ -75,6 +75,7 @@ class Map extends Component
                     case "E": entity.add(new GoalTile(_ctx, x, y, rotation = 1));
                     case "M": entity.add(new GoalTile(_ctx, x, y, rotation = 2));
                     case "3": entity.add(new GoalTile(_ctx, x, y, rotation = 3));
+                    case "G": entity.add(new GrassTile(_ctx, x, y, rotation));
                     case "X": entity.add(new BlockTile(_ctx, x, y, rotation));
                     default: trace("Unkown tile type: ", type);
                 }

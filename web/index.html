@@ -58,53 +58,13 @@
     }
   </style>
 
-  <script src="libs/console-log-viewer.js"></script>
+  <!-- <script src="libs/console-log-viewer.js"></script> -->
 </head>
 <body>
 
 <div id="content"></div>
 <script src="flambe.js"></script>
 <script>
-  function speak(text, voice) {
-    function createVoice(options) {
-      options = options || {};
-      // console.log(options);
-      var speech = new window.SpeechSynthesisUtterance();
-      // console.log(window.speechSynthesis.pending);
-      var voices = window.speechSynthesis.getVoices();
-      // console.log('number of voices', voices.length);
-      speech.voiceURI = 'native';
-      speech.voice = voices[(options.voice === undefined ? 2 : options.voice)];
-      speech.volume = options.volume || 1;
-      speech.rate = options.rate || 1;
-      speech.pitch = options.pitch || 1;
-      speech.lang = options.lang || 'en-US';
-      speech.onstart = function(event) {
-        // console.log('The utterance started to be spoken.');
-      };
-      speech.onend = function(event) {
-        // console.log('The utterance ended after ' + event.elapsedTime + ' seconds', event);
-      };
-      speech.speak = function(text) {
-        if (window.speechSynthesis.speaking)
-          window.speechSynthesis.cancel();
-        this.text = text;
-        window.speechSynthesis.speak(this);
-      };
-      return speech;
-    }
-
-    // TODO: Delay speech until window.speechSynthesis.getVoices() return a list of length > 0
-    // good voices: [1, 0, 2, 13, 15, 19, 23, 26, 33]
-
-    var voice = createVoice({
-      voice: voice
-    });
-
-    voice.speak(text);
-    //voice.speak('In an explosion of light, the sky turned so bright. When the fireworks was done, oh what was to come? Across the infinity of space, the universe had found its face.');
-};
-
     // Check user agent and define if priority should be Flash or HTML
     var targets, a = navigator.userAgent || navigator.vendor || window.opera;
     switch (true)
