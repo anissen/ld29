@@ -27,6 +27,8 @@ class Map extends Component
         TILE_SIZE = tileSize;
         WIDTH = width;
         HEIGHT = height;
+
+
     }
 
     override public function onAdded ()
@@ -49,25 +51,33 @@ class Map extends Component
         var emitter :EmitterSprite = emitterMold.createEmitter();
         var emitterEntity :Entity = new Entity().add(emitter);
 
+        var rawlevel :String = _ctx.pack.getFile(_file).toString();
+        var lines = rawlevel.split("\n");
+
         for (y in 0...5) { // TODO: X and Y should be swapped for portrait mode
             for (x in 0...7) {
-                var empty = Math.random() < 0.3;
-                
                 var entity = tiles[y][x];
                 var rotation = Math.floor(Math.random() * 4);
                 var random = Math.random();
-                if (random < 0.3) {
-                    entity.add(new StraightTile(_ctx, x, y, rotation));
-                } else if (random < 0.6) {
-                    entity.add(new BendTile(_ctx, x, y, rotation));
-                } else if (random < 0.9) {
-                    entity.add(new EmptyTile(_ctx, x, y, rotation));
-                } else {
-                    entity.add(new BlockTile(_ctx, x, y, rotation));
+
+                var type = lines[y].charAt(x);
+                switch (type) {
+                    case "|": entity.add(new StraightTile(_ctx, x, y, rotation = 0));
+                    case "-": entity.add(new StraightTile(_ctx, x, y, rotation = 1));
+                    case "L": entity.add(new BendTile(_ctx, x, y, rotation = 0));
+                    case "<": entity.add(new BendTile(_ctx, x, y, rotation = 1));
+                    case ">": entity.add(new BendTile(_ctx, x, y, rotation = 2));
+                    case "V": entity.add(new BendTile(_ctx, x, y, rotation = 3));
+                    case " ": entity.add(new EmptyTile(_ctx, x, y, rotation));
+                    case "W": entity.add(new GoalTile(_ctx, x, y, rotation = 0));
+                    case "E": entity.add(new GoalTile(_ctx, x, y, rotation = 1));
+                    case "M": entity.add(new GoalTile(_ctx, x, y, rotation = 2));
+                    case "3": entity.add(new GoalTile(_ctx, x, y, rotation = 3));
+                    case "X": entity.add(new BlockTile(_ctx, x, y, rotation));
+                    default: trace("Unkown tile type: ", type);
                 }
 
-                // var texture = empty ? emptyTexture : textures[Math.floor(textures.length * Math.random())];
-                var tileSprite = entity.get(Sprite); // new ImageSprite(texture);
+                var tileSprite = entity.get(Sprite);
                 tileSprite.centerAnchor();
                 tileSprite.setXY(WIDTH / 2, HEIGHT / 2);
                 tileSprite.x.animateTo(x * TILE_SIZE + TILE_SIZE / 2, 1 + Math.random(), Ease.elasticOut);
@@ -111,11 +121,9 @@ class Map extends Component
                         var playerTileY = playerTileData.tileY;
                         var playerSprite = playerEntity.get(Sprite);
                         if (Math.abs(playerTileX - tileX) + Math.abs(playerTileY - tileY) == 1) {
-                            if (tileX < playerTileX && (!playerTileData.leftOpen || !tileData.rightOpen)) return;
-                            if (tileX > playerTileX && (!playerTileData.rightOpen || !tileData.leftOpen)) return;
-                            if (tileY < playerTileY && (!playerTileData.topOpen || !tileData.bottomOpen)) return;
-                            if (tileY > playerTileY && (!playerTileData.bottomOpen || !tileData.topOpen)) return;
-                            player.moveToTile(tileSprite.owner);
+                            if (canMoveToTile(playerTileData, tileData)) {
+                                player.moveToTile(tileSprite.owner);
+                            }
                         }
                         return;
                     }
@@ -161,6 +169,10 @@ class Map extends Component
         // playerEntity.get(Sprite).setXY(TILE_SIZE / 2, TILE_SIZE / 2);
         owner.addChild(playerEntity);
 
+        player.onWin.connect(function() {
+            trace("win!");
+        });
+
         owner.addChild(emitterEntity);
 
         // calculateGraph();
@@ -197,6 +209,14 @@ class Map extends Component
     //     var seed = a; //use first node as initial node
     //     graph.DFS(preflight, seed, f);
     // }
+
+    function canMoveToTile (fromTile :TileData, toTile :TileData) {
+        if (toTile.tileX < fromTile.tileX && (!fromTile.leftOpen   || !toTile.rightOpen))  return false;
+        if (toTile.tileX > fromTile.tileX && (!fromTile.rightOpen  || !toTile.leftOpen))   return false;
+        if (toTile.tileY < fromTile.tileY && (!fromTile.topOpen    || !toTile.bottomOpen)) return false;
+        if (toTile.tileY > fromTile.tileY && (!fromTile.bottomOpen || !toTile.topOpen))    return false;
+        return true;
+    }
 
     function getRow(index :Int) {
         return tiles[index];

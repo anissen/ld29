@@ -42,7 +42,7 @@ class LevelModel extends Component
         _worldLayer.addChild(new Entity().add(background).add(new BackgroundScroller(100)));
         _worldLayer.addChild(_mapLayer = new Entity());
 
-        var map = new Map(_ctx, "dummy_file", TILE_SIZE, WIDTH, HEIGHT);
+        var map = new Map(_ctx, "levels/level1.lvl", TILE_SIZE, WIDTH, HEIGHT);
         _mapLayer.add(new Sprite());
         _mapLayer.add(map);
 
