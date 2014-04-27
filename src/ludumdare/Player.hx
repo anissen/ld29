@@ -46,23 +46,6 @@ class Player extends Component
         }
     }
 
-    function playSound() {
-        var params = new vault.SfxrParams();
-        params.waveType = 0;
-        params.squareDuty = 0.55555*0.6;
-        params.startFrequency = 0.3 + 0.55555*0.3;
-        params.slide = 0.1 + 0.55555*0.2;
-        params.attackTime = 0.0;
-        params.sustainTime = 0.1 + 0.55555*0.3;
-        params.decayTime = 0.1 + 0.55555*0.2;
-        params.masterVolume = 0.15;
-
-        // taken from as3sfxr:
-        //params = vault.SfxrParams.fromString("0,,0.2193,,0.4748,0.3482,,0.0691,,,,,,0.3482,,,,,1,,,,,0.5");
-        var sfxr = new vault.Sfxr(params);
-        sfxr.play();
-    }
-
     public function move (x :Float, y :Float) {
         // _moveToX = x;
         // _moveToY = y;

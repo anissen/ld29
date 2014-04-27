@@ -65,6 +65,8 @@ class PlayScene
         // scene.addChild(cursor); 
         // ---
 
+        ctx.pack.getSound("music/main").loop(0.5);
+
         #if debug
         addDebugSpeedAdjuster(System.root);
 

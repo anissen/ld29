@@ -125,6 +125,7 @@ class Map extends Component
                         if (Math.abs(playerTileX - tileX) + Math.abs(playerTileY - tileY) == 1) {
                             if (canMoveToTile(playerTileData, tileData)) {
                                 player.moveToTile(tileSprite.owner);
+                                _ctx.playJump();
                                 moves._++;
                             }
                         }
@@ -140,11 +141,13 @@ class Map extends Component
                                 shakeScript.run(new Shake(5, 5, 0.5));
                                 emitter.setXY(tile.get(Sprite).x._, tile.get(Sprite).y._);
                                 emitter.restart();
+                                _ctx.playHurt();
                                 hasBlock = true;
                             }
                         }
                         if (hasBlock) return;
                         moveRow(tileY, tileX - startTileX);
+                        _ctx.playExplosion();
                         moves._++;
                     } else if (Math.abs(tileY - startTileY) != 0) {
                         var hasBlock = false;
@@ -155,11 +158,13 @@ class Map extends Component
                                 shakeScript.run(new Shake(5, 5, 0.5));
                                 emitter.setXY(tile.get(Sprite).x._, tile.get(Sprite).y._);
                                 emitter.restart();
+                                _ctx.playHurt();
                                 hasBlock = true;
                             }
                         }
                         if (hasBlock) return;
                         moveColumn(tileX, tileY - startTileY);
+                        _ctx.playExplosion();
                         moves._++;
                     }
                 });
@@ -197,6 +202,7 @@ class Map extends Component
                 var startTileSprite = startTile.get(Sprite);
                 emitter.setXY(startTileSprite.x._, startTileSprite.y._);
                 emitter.restart();
+                _ctx.playExplosion();
                 spawnPlayerScript.dispose();
             }),
         ]));
@@ -296,23 +302,6 @@ class Map extends Component
         var shakeScript = new Script();
         owner.add(shakeScript);
         shakeScript.run(new Shake(2, 1, 0.4));
-    }
-
-    function playSound() {
-        var params = new vault.SfxrParams();
-        params.waveType = 0;
-        params.squareDuty = 0.55555*0.6;
-        params.startFrequency = 0.3 + 0.55555*0.3;
-        params.slide = 0.1 + 0.55555*0.2;
-        params.attackTime = 0.0;
-        params.sustainTime = 0.1 + 0.55555*0.3;
-        params.decayTime = 0.1 + 0.55555*0.2;
-        params.masterVolume = 0.15;
-
-        // taken from as3sfxr:
-        //params = vault.SfxrParams.fromString("0,,0.2193,,0.4748,0.3482,,0.0691,,,,,,0.3482,,,,,1,,,,,0.5");
-        var sfxr = new vault.Sfxr(params);
-        sfxr.play();
     }
 
     private var _ctx :GameContext;

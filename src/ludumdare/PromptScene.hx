@@ -54,6 +54,7 @@ class PromptScene
             button.setXY(x, 0);
             button.pointerDown.connect(function (_) {
                 //ctx.pack.getSound("sounds/Coin").play();
+                ctx.playBeep();
                 handler();
             });
             x += button.getNaturalWidth() + 20;
@@ -66,6 +67,8 @@ class PromptScene
         sprite.y._ = messageLabel.y._ + messageLabel.getNaturalHeight() + 50;
 
         scene.addChild(row.add(sprite));
+
+        ctx.playCoin();
 
         return scene;
     }
