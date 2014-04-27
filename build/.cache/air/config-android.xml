@@ -1,0 +1,34 @@
+<application xmlns="http://ns.adobe.com/air/application/4.0">
+  <id>monkeybusiness.ld29</id>
+  <versionNumber>1.0.0</versionNumber>
+  <filename>LD29</filename>
+  <initialWindow>
+    <content>main-android.swf</content>
+    <aspectRatio>landscape</aspectRatio>
+    <fullScreen>true</fullScreen>
+    <autoOrients>true</autoOrients>
+    <renderMode>direct</renderMode>
+  </initialWindow>
+  <android>
+    <manifestAdditions><![CDATA[
+
+<manifest android:installLocation="auto">
+  <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
+    ]]></manifestAdditions>
+  </android>
+  <iPhone>
+    <InfoAdditions><![CDATA[
+
+<key>UIDeviceFamily</key>
+<array>
+  <string>1</string>
+  <string>2</string>
+</array>
+<key>UIPrerenderedIcon</key>
+<true/>
+    ]]></InfoAdditions>
+    <Entitlements><![CDATA[
+    ]]></Entitlements>
+  </iPhone>
+<icon><image114x114>icons/114x114.png</image114x114><image128x128>icons/128x128.png</image128x128><image144x144>icons/144x144.png</image144x144><image57x57>icons/57x57.png</image57x57><image72x72>icons/72x72.png</image72x72></icon></application>

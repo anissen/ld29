@@ -1,0 +1,16 @@
+{
+  "name": "Ludum Dare",
+  "description": "Simple test of Ludum Dare",
+  "version": "0.1",
+  "main": "index.html",
+  "nodejs": false,
+  "window": {
+    "title": "Ludum Dare node webkit test",
+    "toolbar": false,
+    "width": 800,
+    "height": 600,
+    "min_width": 640,
+    "min_height": 480,
+    "position": "center"
+  }
+}
