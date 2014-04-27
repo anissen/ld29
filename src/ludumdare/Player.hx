@@ -13,7 +13,7 @@ import flambe.script.CallFunction;
 import flambe.script.MoveTo;
 import flambe.sound.Sound;
 import flambe.sound.Playback;
-import flambe.util.Signal1;
+import flambe.util.Signal0;
 import flambe.display.EmitterSprite;
 
 /** Logic for planes. */
@@ -92,6 +92,9 @@ class Player extends Component
             new CallFunction(function () {
                 _tile = tile;
                 moveScript.dispose();
+                if (tile.has(GoalTile)) {
+                    onWin.emit();
+                }
             })
         ]));
         _tile = null;
@@ -109,4 +112,5 @@ class Player extends Component
     public var _tile :Entity;
     // public var _tileX :Int;
     // public var _tileY :Int;
+    public var onWin :Signal0 = new Signal0();
 }
