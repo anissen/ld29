@@ -22,8 +22,6 @@ class GameContext
     // Some constructed assets
     public var messages (default, null) :MessageBundle;
     public var arialFont (default, null) :Font;
-    public var lightFont (default, null) :Font;
-    public var darkFont (default, null) :Font;
 
     public var random (default, null) :Random;
 
@@ -39,8 +37,6 @@ class GameContext
 
         this.messages = MessageBundle.parse(localePack.getFile("messages.ini").toString());
         this.arialFont = new Font(pack, "fonts/handel");
-        this.lightFont = new Font(pack, "fonts/Light");
-        this.darkFont = new Font(pack, "fonts/Dark");
     }
 
     public function enterPlayScene (animate :Bool = true)
@@ -48,8 +44,9 @@ class GameContext
         director.unwindToScene(PlayScene.create(this), animate ? new SlideTransition(0.5, Ease.quadOut) : null);
     }
 
-    public function showPrompt (text :String, buttons :Array<Dynamic>)
+    public function showPrompt (text :String, message :String, buttons :Array<Dynamic>)
     {
-        director.pushScene(PromptScene.create(this, text, buttons));
+        director.pushScene(PromptScene.create(this, text, message, 
+            buttons));
     }
 }

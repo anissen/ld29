@@ -54,15 +54,15 @@ class PlayScene
         // scene.addChild(new Entity().add(pause));
 
         // --- Set custom mouse cursor
-        System.mouse.cursor = None;
+        // System.mouse.cursor = None;
 
-        var cursorIcon :Cursor = new Cursor(ctx, "cursors/cursor");
-        var cursor :Entity = new Entity().add(cursorIcon);
+        // var cursorIcon :Cursor = new Cursor(ctx, "cursors/cursor");
+        // var cursor :Entity = new Entity().add(cursorIcon);
 
-        System.pointer.move.connect(function (event :PointerEvent) {
-            cursor.get(Sprite).setXY(event.viewX, event.viewY);
-        });
-        scene.addChild(cursor); 
+        // System.pointer.move.connect(function (event :PointerEvent) {
+        //     cursor.get(Sprite).setXY(event.viewX, event.viewY);
+        // });
+        // scene.addChild(cursor); 
         // ---
 
         #if debug
