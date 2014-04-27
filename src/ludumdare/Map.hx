@@ -10,6 +10,8 @@ import flambe.Entity;
 import flambe.input.PointerEvent;
 import flambe.math.FMath;
 import flambe.script.*;
+import flambe.script.CallFunction;
+import flambe.script.Shake;
 import flambe.sound.Sound;
 import flambe.sound.Playback;
 import flambe.util.Signal1;
@@ -166,18 +168,35 @@ class Map extends Component
         // Create the player's plane
         var player = new Player(_ctx, "player/player");
         playerEntity = new Entity().add(player);
-        // playerEntity.get(Sprite).setXY(TILE_SIZE / 2, TILE_SIZE / 2);
         owner.addChild(playerEntity);
-
-        player.onWin.connect(function() {
-            trace("win!");
-        });
-
         owner.addChild(emitterEntity);
 
-        // calculateGraph();
+        var playerSprite = playerEntity.get(Sprite);
+        playerSprite.setAlpha(0.0);
 
-        player.moveToTile(tiles[2][2]);
+        var spawnPlayerScript = new Script();
+        owner.add(spawnPlayerScript);
+        spawnPlayerScript.run(new Sequence([
+            new Shake(2, 2, 0.5),
+            new CallFunction(function() {
+                var startTile = tiles[2][2];
+                var startTileSprite = startTile.get(Sprite);
+                playerSprite.setXY(startTileSprite.x._, startTileSprite.y._);
+                playerSprite.setScale(5.0);
+                player.moveToTile(startTile);
+                playerSprite.scaleX.animateTo(0.75, 1, flambe.animation.Ease.bounceOut);
+                playerSprite.scaleY.animateTo(0.75, 1, flambe.animation.Ease.bounceOut);
+                playerSprite.alpha.animateTo(1, 1, flambe.animation.Ease.bounceOut);
+            }),
+            new Delay(0.3),
+            new CallFunction(function() {
+                var startTile = tiles[2][2];
+                var startTileSprite = startTile.get(Sprite);
+                emitter.setXY(startTileSprite.x._, startTileSprite.y._);
+                emitter.restart();
+                spawnPlayerScript.dispose();
+            }),
+        ]));
     }
 
     override public function onUpdate (dt :Float) {

@@ -42,11 +42,20 @@ class LevelModel extends Component
         _worldLayer.addChild(new Entity().add(background).add(new BackgroundScroller(100)));
         _worldLayer.addChild(_mapLayer = new Entity());
 
-        var map = new Map(_ctx, "levels/level1.lvl", TILE_SIZE, WIDTH, HEIGHT);
+        loadMap(_levelIndex);
+        // speak("System operational");
+    }
+
+    private function loadMap(index :Int) {
+        _mapLayer.disposeChildren();
+        var map = new Map(_ctx, "levels/level" + index + ".lvl", TILE_SIZE, WIDTH, HEIGHT);
         _mapLayer.add(new Sprite());
         _mapLayer.add(map);
-
-        // speak("System operational");
+        
+        var player = map.playerEntity.get(Player);
+        player.onWin.connect(function() {
+            loadMap(++_levelIndex);
+        });
     }
 
     private function speak (text :String) {
@@ -95,6 +104,7 @@ class LevelModel extends Component
     private var _playerLayer  :Entity;
     private var _zoom :AnimatedFloat;
     private var _moving :Bool = false;
+    private var _levelIndex :Int = 1;
     private static var TILE_SIZE :Int = 128;
     private static var HEIGHT :Int = TILE_SIZE * 5; // 640;
     private static var WIDTH :Int = TILE_SIZE * 7; //approx. 960;

@@ -33,8 +33,6 @@ class Player extends Component
             owner.add(_sprite = new ImageSprite(normal));
         }
         _sprite.texture = normal;
-        _sprite.scaleX.animateTo(0.75, 1, flambe.animation.Ease.bounceOut);
-        _sprite.scaleY.animateTo(0.75, 1, flambe.animation.Ease.bounceOut);
         // _sprite.setScale(0.1);
         _sprite.disablePixelSnapping();
         _sprite.disablePointer();
